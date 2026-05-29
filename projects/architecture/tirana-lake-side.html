@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tirana Lake Side — Ayrton (A.J.) Laucks</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    /* ── PASSWORD GATE ── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    #gate-label {
+      font-family: 'Basier Square', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.60);
+    }
+
+    #gate-input {
+      font-family: 'Basier Square', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      padding: 8px 12px;
+      width: 240px;
+      outline: none;
+      text-align: center;
+    }
+
+    #gate-input:focus {
+      border-color: #000;
+    }
+
+    #gate-error {
+      font-family: 'Basier Square', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.40);
+      min-height: 1em;
+    }
+
+    #gate-submit {
+      font-family: 'Basier Square', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      padding: 8px 24px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    #gate-submit:hover {
+      background: #f4f4f4;
+      border-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE — sits above everything until correct password entered -->
+  <div id="gate">
+    <span id="gate-label">password required</span>
+    <input id="gate-input" type="password" placeholder="" autocomplete="off">
+    <button id="gate-submit">enter</button>
+    <span id="gate-error"></span>
+  </div>
+
+  <script>
+    (function () {
+      var PASSWORD = 'elegantproportions';
+      var gate     = document.getElementById('gate');
+      var input    = document.getElementById('gate-input');
+      var submit   = document.getElementById('gate-submit');
+      var error    = document.getElementById('gate-error');
+
+      // If already unlocked this session, hide gate immediately
+      if (sessionStorage.getItem('tirana-unlocked') === '1') {
+        gate.style.display = 'none';
+      } else {
+        input.focus();
+      }
+
+      function attempt() {
+        if (input.value === PASSWORD) {
+          sessionStorage.setItem('tirana-unlocked', '1');
+          gate.style.display = 'none';
+          error.textContent = '';
+        } else {
+          error.textContent = 'incorrect password';
+          input.value = '';
+          input.focus();
+        }
+      }
+
+      submit.addEventListener('click', attempt);
+
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') attempt();
+      });
+    }());
+  </script>
+
+  <header class="topnav">
+    <div class="topnav__inner">
+    <a class="topnav__name" href="../../index.html">Ayrton (A.J.) Laucks</a>
+    <ul class="topnav__links">
+      <li><a href="../../architecture.html">Architecture</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../research.html">Research</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../photography.html">Photography</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../writing.html">Writing</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../ai-imagery.html">AI Imagery</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../about.html">About</a></li>
+    </ul>
+    </div>
+  </header>
+
+  <button class="mob-burger" aria-label="Open navigation">
+    <span class="mob-burger__line"></span>
+    <span class="mob-burger__line"></span>
+    <span class="mob-burger__line"></span>
+  </button>
+
+  <nav class="mob-nav" aria-label="Mobile navigation">
+    <button class="mob-nav__close" aria-label="Close navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="mob-nav__name" href="../../index.html">Ayrton (A.J.) Laucks</a>
+    <ul class="mob-nav__links">
+      <li><a href="../../architecture.html">Architecture</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../research.html">Research</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../photography.html">Photography</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../writing.html">Writing</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../ai-imagery.html">AI Imagery</a></li>
+      <span class="topnav__pipe">|</span>
+      <li><a href="../../about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <div class="col">
+
+      <h1 class="proj-title">Tirana Lake Side</h1>
+
+      <div class="proj-meta">
+        <div class="proj-meta__row">
+          <span class="proj-meta__key">Time:</span>
+          <span class="proj-meta__val">Fall 2025</span>
+        </div>
+        <div class="proj-meta__row">
+          <span class="proj-meta__key">Location:</span>
+          <span class="proj-meta__val">Tirane, Albania</span>
+        </div>
+        <div class="proj-meta__row">
+          <span class="proj-meta__key">Collaborators:</span>
+          <span class="proj-meta__val">Cobe (Copenhagen, Denmark), Christian Madsen, Eik Bjerregaard, Birk Daugaard</span>
+        </div>
+      </div>
+
+      <div class="proj-desc">
+        <p>Tirane Lake Side is a direct-commission, 15 floor, 12,500 sq. meter residential tower in the suburbs of Tirane, Albania. Cobe was responsible for the concept design, working in close collaboration with a local architect: NOD.</p>
+        <p>This project seeks to continue the development of Tirana by adding a new landmark at the south entrance to the city while establishing a meaningful node for public life that will expand and integrate into the existing life along the lake shores. This structure is a unique newcomer as well as a friendly neighbor to Sauk, the Lakes, and the greater area of south Tirana.</p>
+        <p>The growth of Tirana is reflected in the growth of suburbs like Sauk, where the spectacular high rises of the city meet lower suburban developments. This raises an interesting question: how to combine the unique nature of the high rise with the intention of making human scaled and welcoming neighborhoods in the greater Tirana area? With Tirana Lake Side we hope to create an example of a friendly neighborhood high rise, which takes steps to establish not only a landmark, but also a meaningful first move to create a new livable neighborhood.</p>
+        <p>The imagery of the surrounding mountainsides with their lush greenery was important to preserve and reinterpret throughout this project. The integration of greenery is not only a way to bring shade, human scale and livability to each home in the building, but also as a way to inscribe a modern building into its environment — ancient mountainsides.</p>
+        <p>Responding to the natural context and trying to create a building with slim, elegant proportions, a simple extruded prism was rejected in favor of a terraced trapezoid. Two step-back terraces provide ample area for greenery, bringing the nature from the surrounding mountains onto and up the building. They also scale the large mass of the building down, giving it a more elegant profile and massing.</p>
+        <p>Looking towards the facade, small variation in the panels of each volume of the building combined with the setback of the terraces breaks down the overall building visually to ensure an elegant and dynamic expression from all elevations. The inset balconies, vertical metal fins and integrated planters work together as a unified facade system to provide both privacy between balconies, shading and filtering of the harshest midday light and cooling of the balconies and facade.</p>
+        <p>The outer skin of the facade consists of cor-ten steel vertical fins spanning the length of the building and cut by the terraces, providing a sense of slenderness to the volume. In between the vertical fins sits a row of lush green planters expressed in a corrugated and perforated cor-ten steel panel. The rippling effect of these steel panels are a subtle nod to the wave tops of the lake.</p>
+        <p>Distribution of Labor: I was engaged in this project from beginning to end, working closely with Christian Madsen as a two-person team. We were assisted by Eik Bjerregaard and Birk Daugaard, operating as the project manager and creative lead, respectively, though both contributed significantly to the design of the project. Along the way, I was responsible for creating a digital site model, physical site model, physical massing iterations (40+), digital facade model, daily renders based on others' and my own design ideas, concept diagrams, elevations, sections, plans, isometrics, and assisted in the creation of the final design booklet presented to the client.</p>
+      </div>
+      
+      <div class="project-list">
+
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/1.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/2.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/3.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/4.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/5.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/6.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/7.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/8.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/9.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/10.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/11.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/12.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/13.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/14.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/15.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/16.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/17.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/18.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/19.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/20.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/21.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/22.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/23.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/24.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/25.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/26.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/27.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/28.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/29.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/30.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/31.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/32.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/33.jpg" alt="">
+          </div>
+        </a>
+        <a class="project-card">
+          <div class="project-card__thumb">
+            <img src="https://images.aj-laucks.com/ajlaucks-images/01_Architecture/01_Tirana%20Lake%20Side/34.jpg" alt="">
+          </div>
+        </a>
+      </div>
+
+      <a class="back-link" href="../../architecture.html">&#8592; Architecture</a>
+
+    </div>
+  </div>
+
+  <script src="../../nav.js"></script>
+</body>
+</html>
